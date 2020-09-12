@@ -128,7 +128,7 @@ class PlayerShip:
         self.currentDirection = False
 
     def Shoot(self):
-        raise NotImplementedError
+        raise NotImplementedError('Shoot method not implemented.')
 
     def __str__(self):
         return str('Player Ship at ') + str(self.Position) + str(f'with {self.Health} health.')

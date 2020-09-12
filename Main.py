@@ -131,7 +131,7 @@ while GAME_LOOP:
         if not GAME_SETTINGS.gameStarted:
             StartTime = START_GAME()
         else:
-            GAME_OBJECTS['PlayerLasers'][0].isVisible = True
+            GAME_OBJECTS['Player'][0].Shoot()
     elif KEY == 'F11':
         if GAME_SETTINGS.fullScreen:
             GAME_SETTINGS.fullScreen = False
