@@ -58,17 +58,17 @@ def INITIALIZE_GAME_OBJECTS(GAME_SETTINGS):
 def UPDATE_SCREEN(WIN, GAME_OBJECTS, GAME_SETTINGS):
     WIN.fill((32,32,32))
     for currentPixel in GAME_OBJECTS['Pixels'].Pixels:
-        WIN.blit(currentPixel.Image, currentPixel.Position)
+        WIN.blit(currentPixel.Image, tuple(map(round, currentPixel.Position))) # To avoid DeprecationWarning when passing float values for surface position, the tuple values are rounded.
     for currentButton in GAME_OBJECTS['Buttons']:
         if currentButton.isVisible:
-            WIN.blit(currentButton.Image, currentButton.Position)
+            WIN.blit(currentButton.Image, tuple(map(round, currentButton.Position)))
     for playerLaser in GAME_OBJECTS['PlayerLasers']:
         if playerLaser.isVisible:
             playerLaser.Move()
-            WIN.blit(playerLaser.Image, (playerLaser.Position[0] + GAME_OBJECTS['Player'][0].Size[0]/2 - playerLaser.Size[0]/2, playerLaser.Position[1]))
+            WIN.blit(playerLaser.Image, tuple(map(round, (playerLaser.Position[0] + GAME_OBJECTS['Player'][0].Size[0]/2 - playerLaser.Size[0]/2, playerLaser.Position[1]))))
     for playerObject in GAME_OBJECTS['Player']:
         if playerObject.isVisible:
-            WIN.blit(playerObject.Image, playerObject.Position)
+            WIN.blit(playerObject.Image, tuple(map(round, playerObject.Position)))
 
     if GAME_SETTINGS.devMode:
         WIN.blit(DEV_FONT.render('DEVELOPER MODE', True, (255, 255, 255), (64, 64, 64)), (0,0)) # Dev Mode text.
